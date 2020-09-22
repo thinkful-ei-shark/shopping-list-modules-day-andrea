@@ -42,11 +42,11 @@ const render = function () {
 };
 
 const addItemToShoppingList = function (name) {
-    try { 
+  try {
     item.validateName;
     store.items.push(item.create(name))
-  } catch(error) {
-    console.log(`Cannot add item: ${error.message}`) 
+  } catch (error) {
+    console.log(`Cannot add item: ${error.message}`)
   }
   render();
 
@@ -117,10 +117,11 @@ const handleToggleFilterClick = function () {
 
 const handleEditShoppingItemSubmit = function () {
   $('.js-shopping-list').on('submit', '.js-edit-item', event => {
+    console.log(`handleEditShoppingItemSubmit -> event`, event)
     event.preventDefault();
-    const id = getItemIdFromElement(event.currentTarget);
+    const id = getItemIdFromElement(event.target);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
-    store.findAndUpdateName();
+    store.findAndUpdateName(id, itemName);
     render();
   });
 };
